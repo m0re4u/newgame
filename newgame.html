@@ -84,7 +84,7 @@ EnemyPolice.prototype.update = function() {
 };
 
 // create game
-var game = new Phaser.Game(1366, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(1366, 650, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 //preload for certain assets
 function preload() {
@@ -133,7 +133,7 @@ function create() {
 
     back = game.add.tileSprite(0, 0, game.stage.bounds.width, game.cache.getImage('sky').height, 'sky');
     music = game.sound.play('boden');
-    game.world.setBounds(0,0,1366,600);
+    game.world.setBounds(0,0,1366,650);
     
     // Bullet(piss) sprites
     bullets = game.add.group();
@@ -313,15 +313,11 @@ function update() {
     pissText.text = 'Piss: ' + piss_meter;
     
      if (enemiesAlive == 0){
-        score += 1000;
         scoreText.text = 'Score: ' + score;
-
         enemyBullets.callAll('kill',this);
-        stateText.text = " You Won, \n Click to restart";
+        stateText.text = " You Won, \n Refresh to restart";
         stateText.visible = true;
 
-        //the "click to restart" handler
-        game.input.onTap.addOnce(restart,this);
     }
     
 }
@@ -332,7 +328,7 @@ function collectBeer (player, beer) {
     beer.kill();
 
     //  Add and update the score
-    piss_meter += 25;
+    piss_meter += 15;
     
 
 }
@@ -363,8 +359,7 @@ function bulletHitPlayer (player, en_bullet) {
     if(player.health <= 0){
         player.kill();
         enemyBullets.callAll('kill');
-
-        stateText.text=" GAME OVER \n Refresh the page to restart";
+        stateText.text=" GAME OVER \n Refresh to restart";
         stateText.visible = true;
         scoreText.x = 650;
         scoreText.y = 400;
