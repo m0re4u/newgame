@@ -67,7 +67,7 @@ EnemyPolice.prototype.damage = function() {
 }
 
 EnemyPolice.prototype.update = function() {
-    if (this.game.physics.arcade.distanceBetween(this.police, this.player) < 300)
+    if (this.game.physics.arcade.distanceBetween(this.police, this.player) < 400)
     {   
         if (this.game.time.now > this.en_nextFire && this.en_bullets.countDead() > 0)
         {
